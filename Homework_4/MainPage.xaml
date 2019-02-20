@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Homework_4"
+    x:Class="Homework_4.MainPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true">
+    <StackLayout>
+        <Label
+            Text="Tennis player ranking"
+            HorizontalTextAlignment="Center"
+            FontSize="35" />
+        <ListView
+            x:Name="PlayerListView"
+            IsPullToRefreshEnabled="true"
+            Refreshing="Handle_Refreshing"
+            ItemTapped="Handle_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem
+                                Text="Delete"
+                                Clicked="Handle_Clicked"
+                                CommandParameter="{Binding Name}" />
+                        </ViewCell.ContextActions>
+                        <ViewCell.View>
+                            <StackLayout
+                                Margin="15, 0, 0, 0"
+                                Orientation="Horizontal"
+                                Spacing="25"
+                                VerticalOptions="Center">
+                                <Label
+                                    Text="{Binding Rank}" />
+                                <Image
+                                    Source="{Binding NationalityImage}"
+                                    WidthRequest="25" />
+                                <Label
+                                    Text="{Binding Name}" />
+                                <Label
+                                    Text="{Binding AtpPoints}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
